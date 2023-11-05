@@ -1,0 +1,56 @@
+package jdbcdemo;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class ProcedureCatchTry{
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+
+		// Load the DB
+
+		// Connect the DB
+		String dburl = "jdbc:mysql://localhost:3306/animated_movies";
+		String username = "root";
+		String password = "root";
+		String query = "Call allmovies()";
+
+		Connection conn = null;
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			conn = DriverManager.getConnection(dburl, username, password);
+			System.out.println("Succesfully connected");
+
+			Statement stmt = conn.createStatement();
+
+			ResultSet rs = stmt.executeQuery(query);
+
+			while (rs.next()) {
+
+				System.out.print("Title:  " + rs.getString("Title") + "\t");
+
+				System.out.print("Genre:  " + rs.getString("Genre") + "\t");
+
+				System.out.print("Director:  " + rs.getString("Director") + "\t");
+
+				System.out.println("Release Year:  " + rs.getString("Release_year") + "\t");
+
+			}
+
+		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
+		} finally {
+
+			conn.close();
+
+		}
+
+	}
+
+}
