@@ -1,0 +1,124 @@
+1)Stored procedure
+
+package jdbcdemo;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class ProcedureDemo {
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		
+		// Load the DB
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				// Connect the DB
+				String dburl = "jdbc:mysql://localhost:3306/animated_movies";
+				String username = "root";
+				String password = "root";
+				String query = "Call allmovies()";
+				
+				
+				Connection conn = DriverManager.getConnection(dburl, username, password);
+				System.out.println("Succesfully connected");
+				
+				Statement stmt = conn.createStatement();
+				
+				ResultSet rs = stmt.executeQuery(query);
+				
+				while (rs.next()) {
+
+					System.out.print("Title:  " + rs.getString("Title") + "\t");
+
+					System.out.print("Genre:  " + rs.getString("Genre") + "\t");
+
+					System.out.print("Director:  " + rs.getString("Director") + "\t");
+
+					System.out.println("Release Year:  " + rs.getString("Release_year") + "\t");
+
+				}
+
+				conn.close();
+
+		
+
+	}
+
+}
+
+
+
+2)Exception Handling
+
+package jdbcdemo;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class ProcedureCatchTry{
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+
+		// Load the DB
+
+		// Connect the DB
+		String dburl = "jdbc:mysql://localhost:3306/animated_movies";
+		String username = "root";
+		String password = "root";
+		String query = "Call allmovies()";
+
+		Connection conn = null;
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			conn = DriverManager.getConnection(dburl, username, password);
+			System.out.println("Succesfully connected");
+
+			Statement stmt = conn.createStatement();
+
+			ResultSet rs = stmt.executeQuery(query);
+
+			while (rs.next()) {
+
+				System.out.print("Title:  " + rs.getString("Title") + "\t");
+
+				System.out.print("Genre:  " + rs.getString("Genre") + "\t");
+
+				System.out.print("Director:  " + rs.getString("Director") + "\t");
+
+				System.out.println("Release Year:  " + rs.getString("Release_year") + "\t");
+
+			}
+
+		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
+		} finally {
+
+			conn.close();
+
+		}
+
+	}
+
+}
+
+
+
+
+Output
+
+Succesfully connected
+Title:  Inside Out	Genre:  Comedy	Director:  Pete Doctor	Release Year:  2015	
+Title:  Toy Story 4	Genre:  Comedy	Director:  Josh Cooley	Release Year:  2019	
+Title:  Inside Out 	Genre:  Comedy	Director:  Pete Doctor	Release Year:  2015	
+Title:  Inside Out 	Genre:  Comedy	Director:  Pete Doctor	Release Year:  2015	
+Title:  Dhoom 1 	Genre:  Action	Director:  Dhoom director	Release Year:  2015	
+Title:  Dhoom 1 	Genre:  Action	Director:  Dhoom director	Release Year:  2015	
+
