@@ -12,7 +12,7 @@ public class XLS_DataProvider {
 	static Workbook book;
 	static Sheet sheet;
 
-	public static String testdata_sheet_path = "C:\\Users\\Mittal Parikh\\Desktop\\mytestdata\\testdata1.xlsx";
+	public static String testdata_sheet_path = "C:\\Users\\ashmitha\\Desktop\\mytestdata\\testdata1.xlsx";
 
 	public static Object[][] getTestData(String sheetName) throws IOException {
 
