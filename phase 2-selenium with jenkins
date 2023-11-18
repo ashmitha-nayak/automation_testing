@@ -1,4 +1,10 @@
-package com.app.jenkinsdemo;
+<suite name="Jenkins-SeleniumDemo" verbose="1">
+<test name="TestCycle1">
+<classes>
+<class name="com.app.jenkinsdemo.TestJenkinsDemo"></class>
+</classes>
+</test>
+</suite>package com.app.jenkinsdemo;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
