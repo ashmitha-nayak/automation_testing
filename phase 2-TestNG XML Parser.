@@ -1,31 +1,66 @@
-<suite name="extentreports" verbose="1">
-    <test name="Test WikiPage">
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="MyTestSuite">
+    <test name="MyTestCase">
         <classes>
-            <class name="com.app.TestNG.extentreports.TestClass">
-                <methods>
-                    <include name="method1"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-
-    <test name="Test facebookpage">
-        <classes>
-            <class name="com.app.TestNG.extentreports.TestClass">
-                <methods>
-                    <include name="method2"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-
-    <test name="Test rediffPage">
-        <classes>
-            <class name="com.app.TestNG.extentreports.TestClass">
-                <methods>
-                    <include name="method3"/>
-                </methods>
-            </class>
+            <class name="com.example.MyTestClass1" />
+            <class name="com.example.MyTestClass2" />
         </classes>
     </test>
 </suite>
+
+import org.testng.TestNG;
+import org.testng.xml.XmlSuite;
+
+import java.util.Arrays;
+
+public class TestNGXmlParser {
+
+    public static void main(String[] args) {
+        // Create an XmlSuite object representing the suite
+        XmlSuite suite = new XmlSuite();
+        suite.setName("MyTestSuite");
+
+        // Create an XmlTest object representing the test case
+        XmlSuite test = new XmlSuite();
+        test.setName("MyTestCase");
+
+        // Add the classes to the test
+        test.setClasses(Arrays.asList("com.example.MyTestClass1", "com.example.MyTestClass2"));
+
+        // Add the test to the suite
+        suite.setTests(Arrays.asList(test));
+
+        // Create a TestNG object
+        TestNG testNG = new TestNG();
+import org.testng.TestNG;
+import org.testng.xml.XmlSuite;
+
+import java.util.Arrays;
+
+public class TestNGXmlParser {
+
+    public static void main(String[] args) {
+        // Create an XmlSuite object representing the suite
+        XmlSuite suite = new XmlSuite();
+        suite.setName("MyTestSuite");
+
+        // Create an XmlTest object representing the test case
+        XmlSuite test = new XmlSuite();
+        test.setName("MyTestCase");
+
+        // Add the classes to the test
+        test.setClasses(Arrays.asList("com.example.MyTestClass1", "com.example.MyTestClass2"));
+
+        // Add the test to the suite
+        suite.setTests(Arrays.asList(test));
+
+        // Create a TestNG object
+        TestNG testNG = new TestNG();
+
+        // Add the suite to TestNG
+        testNG.setXmlSuites(Arrays.asList(suite));
+
+        // Run the test
+        testNG.run();
+    }
+}
