@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="SeleniumAntIntegration" basedir="." default="runTests">
+
+    <!-- Set properties -->
+    <property name="lib.dir" value="lib" />
+    <property name="src.dir" value="src" />
+    <property name="build.dir" value="build" />
+    <property name="test.dir" value="test" />
+
+    <!-- Path to Selenium JARs -->
+    <path id="selenium.classpath">
+        <fileset dir="${lib.dir}" includes="*.jar" />
+    </path>
+
+    <!-- Define targets -->
+    <target name="clean">
+        <delete dir="${build.dir}" />
+    </target>
+
+    <target name="init" depends="clean">
+        <mkdir dir="${build.dir}" />
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="selenium.classpath" />
+    </target>
+
+    <target name="runTests" depends="compile">
+        <java classname="YourTestClass" classpathref="selenium.classpath:${build.dir}">
+            <!-- Additional Java options if needed -->
+            <!-- <jvmarg value="-Dproperty=value" /> -->
+        </java>
+    </target>
+
+</project>
+
+
+
+
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class YourTestClass {
+    public static void main(String[] args) {
+        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+        WebDriver driver = new ChromeDriver();
+
+        // Your Selenium test code here
+
+        driver.quit();
+    }
+}
