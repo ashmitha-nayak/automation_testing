@@ -1,0 +1,8 @@
+WDS.sampleResult.sampleStart()
+WDS.browser.get('https://tutorialsninja.com/demo/')
+WDS.browser.findElement(org.openqa.selenium.By.linkText("My Account")).click()
+WDS.browser.findElement(org.openqa.selenium.By.linkText("Login")).click()
+WDS.browser.findElement(org.openqa.selenium.By.id("input-email")).sendKeys("seleniumdemo@gmail.com")
+WDS.browser.findElement(org.openqa.selenium.By.id("input-password")).sendKeys("123456")
+WDS.browser.findElement(org.openqa.selenium.By.xpath("//input[@value='Login']")).click()
+WDS.sampleResult.sampleEnd()
